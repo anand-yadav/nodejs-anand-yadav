@@ -1,14 +1,26 @@
 //  OpenShift sample Node application
 var express = require('express'),
     fs      = require('fs'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    passport = require('passport'),
     app     = express(),
-    eps     = require('ejs'),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    cors = require('cors');
     
 Object.assign=require('object-assign')
 
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
+// view engine setup
+app.set('views', path.join(__dirname, 'templates/views'));
+app.set('view engine', 'jade');
+
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '/public')));
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -72,7 +84,7 @@ app.get('/', function (req, res) {
       res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
     });
   } else {
-    res.render('index.html', { pageCountMessage : null});
+    res.render('index', { pageCountMessage : null});
   }
 });
 
