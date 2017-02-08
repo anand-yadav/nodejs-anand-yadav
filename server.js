@@ -14,7 +14,7 @@ Object.assign=require('object-assign')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates/views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
