@@ -7,6 +7,8 @@
   "private": true,
   "dependencies": {
     "materialize": "^0.98.0",
-    "angular": "^1.6.2"
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
+    "angular": "^1.6.2",
   }
 }

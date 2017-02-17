@@ -13,7 +13,7 @@ var express = require('express'),
 Object.assign=require('object-assign')
 
 // view engine setup
-app.set('views', path.join(__dirname, 'templates/views'));
+app.set('views', path.join(__dirname, 'screens'));
 app.set('view engine', 'pug');
 
 app.use(morgan('combined'));
